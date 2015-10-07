@@ -32,7 +32,7 @@ $mail = new MailingList(
 );
 ```
 
-## Javascript Funcationality 
+## Javascript Functionality 
 The form ajax responses were built utilizing bootstrap modals. You can opt to have it display anywhere on the page besides a pop up. 
 Validation is handled by jquery-validation plugin by Jörn Zaefferer. You can opt to use your own javascript methods of validation.
 All that is important is the following possible data returns.
