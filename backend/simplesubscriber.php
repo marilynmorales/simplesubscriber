@@ -6,7 +6,8 @@ $mail = new MailingList(
 		'name'		=> 'test_db',
 		'username'	=> 'root',
 		'password'	=> ''
-	),array(
-		'table_name'	=> 'house'
 	)
 );
+
+$mail->setTableName('Openup');
+$mail->init();

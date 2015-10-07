@@ -1,9 +1,9 @@
 <?php 
 class MailingList extends mysqli {
-	private $timezone = 'America/Los_Angeles';
-	private $tableName = 'Subscribers';
+	public $timezone = 'America/Los_Angeles';
+	public $tableName = 'Subscribers';
 	private $email = '';
-	public function __construct($dbConnect, $specification=array('timezone'=>'America/Los_Angeles', 'table_name'=>'Subscribers')) {
+	public function __construct($dbConnect) {
 		if(!isset($dbConnect['host']) || !isset($dbConnect['username']) || !isset($dbConnect['password']) || !isset($dbConnect['name'])){
 			die('Please make sure you\'ve specified the host, database name, database username, and database password.');
 		}		
@@ -13,15 +13,10 @@ class MailingList extends mysqli {
             die('Connect Error (' . mysqli_connect_errno() . ') '
                     . mysqli_connect_error());
         }
-		if(isset($specification['timezone'])) {
-			$this->timezone = $specification['timezone'];
-		}
-		if(isset($specification['table_name'])) {
-			$this->tableName = $specification['table_name'];
-		}
+	}
+	public function init() {
 		$this->createTable('id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
 		email VARCHAR (150) UNIQUE NOT NULL, signed DATETIME');
-
 		$action = $_GET['action'];
 		if(isset($action)) {
 			$this->email = $_POST['email'];
@@ -58,14 +53,13 @@ class MailingList extends mysqli {
 		echo json_encode($toObj);	
 	}
 
-	public function createTable($settings){
-		$name		= htmlspecialchars(preg_filter('/(\d*)(\W*)/', '', $this->tableName));
-		$name		= ucfirst(strtolower($name));
+	protected function createTable($settings){
+		$this->setTableName($this->tableName);
 		$settings 	= htmlspecialchars($settings);
-		$query 		= "CREATE TABLE " . $name . " (" . $settings . ")";		
+		$query 		= "CREATE TABLE " . $this->tableName . " (" . $settings . ")";		
 		mysqli::query($query);
 	}
-	public function checkIfValIsNew($col, $val) {
+	protected function checkIfValIsNew($col, $val) {
 		$query 	= "SELECT * FROM " . $this->tableName . " WHERE " . $col . "='" . $val . "'";
 		$toArr 	= array();
 		$result = mysqli::query($query);
@@ -77,7 +71,7 @@ class MailingList extends mysqli {
 		}
 		return $toArr;
 	}
-	public function insert($cols, $vals) {
+	protected function insert($cols, $vals) {
 		$query = "INSERT INTO " . $this->tableName . " (" . $cols . ")" . " VALUES (" . $vals . ")";
 		$toObj = array();
 		if (mysqli::query($query) == TRUE) {
@@ -86,5 +80,10 @@ class MailingList extends mysqli {
 			$toObj['isAccepted'] = FALSE;
 		}
 		echo json_encode($toObj);
+	}
+	public function setTableName($name) {
+		$name = htmlspecialchars(preg_filter('/(\d*)(\W*)/', '', $name));
+		$name = ucfirst(strtolower($name));
+		$this->tableName = $name;
 	}
 }
