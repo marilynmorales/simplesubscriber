@@ -1,0 +1,103 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "bootstrap";
+
+body {
+	background-color: #0071A3;
+	font-family: 'Open Sans', sans-serif;
+	color: #fff;
+	padding-top: 40px;
+    font-size: 16px;
+    font-size: 1.6rem;
+}
+h2 {
+	font-family: 'Contrail One', cursive;
+	font-size: 28px;
+    letter-spacing: -2px;
+	text-align: center;
+    color: #062B3C;
+	margin-bottom: 10px;
+}
+.content {
+	margin: 40px 0;
+}
+form {
+	margin-top: 20px;
+	label {
+		display: block;
+	}
+	label.error {
+		color: #FF8282;
+		font-size: 15px;
+		margin-top: 7px;
+	}
+	p {
+		margin-bottom: 10px;
+	}
+}
+.form-control {
+	font-size: 15px;
+	border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 3px solid #1B6A8E;
+    height: 50px;
+    background-color: #FCFDFE;
+}
+.btn {
+	margin: 0 auto;
+	display: block;
+    background-color: #0071A3;
+    border-radius: 0;
+    padding: 10px 30px;
+    color: #fff;
+    font-weight: bold;
+    border: 3px solid #084E6D;
+	&:active, &:hover, &:focus {
+		background-color: #118DC3;
+		color: #fff;
+		border-color:#036692;
+	}
+}
+
+.modal {
+	color: #062B3C;
+}
+.modal-title {
+	color: #0071A3;
+    font-family: 'Contrail One', cursive;
+    font-size: 40px;
+    letter-spacing: -3px;
+}
+@media (min-width: 768px) { 
+	h2 {
+		font-size: 45px;	
+	}
+	form label {
+		position: relative;
+		label.error {
+			margin-top: 0;
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+	}
+	.modal-title {
+		padding-right: 50px;
+		padding-left: 50px;
+	}
+	.modal-body {
+		padding: 30px 50px;	
+	}
+}
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1200px) {
+
+}
