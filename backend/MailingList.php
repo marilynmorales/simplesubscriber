@@ -86,4 +86,9 @@ class MailingList extends mysqli {
 		$name = ucfirst(strtolower($name));
 		$this->tableName = $name;
 	}
+	public function setTimezone($name) {
+		$name = htmlspecialchars($name);
+		$name = ucfirst(strtolower($name));
+		$this->timezone = $name;
+	}
 }

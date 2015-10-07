@@ -13,10 +13,11 @@ $mail = new MailingList(
 		'password'	=> ''
 	)
 );
+$mail->init();
 ```
 
 ## Customization
-If you wish to have the table be a different name or timezone, simply pass the mailing a new array. Timezones are based on PHP supported timezones.
+If you wish to have the table be a different name or timezone do the following before init(). Timezones are based on PHP supported timezones.
 ```php
 $mail = new MailingList(
 	array(
@@ -24,12 +25,11 @@ $mail = new MailingList(
 		'name'		=> 'test_db',
 		'username'	=> 'root',
 		'password'	=> ''
-	),
-	array(
-		'table_name'=> 'newTableOfSubscribers',
-		'timezone'	=> 'Arctic/Longyearbyen'
 	)
 );
+$mail->setTableName('newTableOfSubscribers');
+$mail->setTimezone('Arctic/Longyearbyen');
+$mail->init();
 ```
 
 ## Javascript Functionality 

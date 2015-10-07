@@ -10,4 +10,5 @@ $mail = new MailingList(
 );
 
 $mail->setTableName('Openup');
+$mail->setTimezone('Arctic/Longyearbyen');
 $mail->init();
